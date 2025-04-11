@@ -1,0 +1,60 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "dropFile": "Drop an image here"
+  },
+  "auth": {
+    "login": "Sign in",
+    "register": "Sign Up",
+    "noAccount": "Don't have an account?"
+  },
+  "movies": {
+    "myMovies": "My movies",
+    "empty": "Your movie list is empty",
+    "add": "Add a new movie",
+    "addSuccess": "Movie added successfully!"
+  },
+  "errors": {
+    "requiredField": "Field is required",
+    "requiredEmail": "Please enter a valid email address",
+    "requiredFirstName": "First name cannot be empty, please provide your first name",
+    "requiredLastName": "Last name cannot be empty, please provide your last name",
+    "requiredPass": "Password is required, make sure it’s at least 8 characters long",
+    "requiredPassRepeat": "Please confirm your password by entering it again",
+    "invalidEmail": "Please enter valid email",
+    "invalidPass": "Password must include uppercase and lowercase letters, a number, and a special character",
+    "invalidPhoneNumber": "Phone number is not valid",
+    "minLengthPass": "Password needs to be at least {{value}} characters",
+    "maxLengthChars": "Field must be not more than {{value}} characters",
+    "passwordsDontMatch": "Passwords don't match",
+    "fileSizeExceeds": "File size exceeds 5 MB",
+    "invalidImageType": "File should be in png or jpeg type",
+    "unknown": "Something went wrong",
+    "uploadFile": "Upload file before create movie!"
+  },
+  "inputs": {
+    "upload": "Drop file here",
+    "email": "Email",
+    "password": "Password",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "confirmPassword": "Repeat password",
+    "minCharacters": "Min {{value}} characters",
+    "maxCharacters": "Max {{value}} characters",
+    "remember": "Remember Me",
+    "title": "Title",
+    "year": "Publishing year"
+  },
+
+  "error404": {
+    "header": "404",
+    "subheader": "Page not found",
+    "description": "The page you are looking for doesn't exist or might have been removed.",
+    "pleaseGoBack": "Please, go back to the previous page.",
+    "goBack": "Go back",
+    "pleaseGoToHomePage": "Please, go to the home page.",
+    "homePage": "Home Page"
+  }
+}

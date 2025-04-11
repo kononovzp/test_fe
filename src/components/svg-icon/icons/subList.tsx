@@ -1,0 +1,49 @@
+import * as React from 'react';
+const Icon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
+  <svg
+    width="32"
+    height="32"
+    viewBox="0 0 32 32"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <rect
+      x="6"
+      y="6"
+      width="8.33333"
+      height="8.33333"
+      rx="2"
+      stroke="currentColor"
+      strokeLinecap="round"
+    />
+    <rect
+      x="6"
+      y="17.6666"
+      width="8.33333"
+      height="8.33333"
+      rx="2"
+      stroke="currentColor"
+      strokeLinecap="round"
+    />
+    <rect
+      x="17.667"
+      y="6"
+      width="8.33333"
+      height="8.33333"
+      rx="2"
+      stroke="currentColor"
+      strokeLinecap="round"
+    />
+    <rect
+      x="17.667"
+      y="17.6666"
+      width="8.33333"
+      height="8.33333"
+      rx="2"
+      stroke="currentColor"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+export default Icon;
