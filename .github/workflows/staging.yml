@@ -77,12 +77,12 @@ jobs:
           envs: AWS_ECR_REGISTRY,AWS_ECR_REPOSITORY,AWS_DEFAULT_REGION,IMAGE_TAG,NEXT_PUBLIC_API_URL
           script: |
             aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ECR_REGISTRY
-            docker stop backend
-            docker rm backend
+            docker stop frontend
+            docker rm frontend
             docker rmi $(docker images $AWS_ECR_REGISTRY/$AWS_ECR_REPOSITORY:* -q)
             docker pull $AWS_ECR_REGISTRY/$AWS_ECR_REPOSITORY:$IMAGE_TAG
             docker run -d \
-                --name backend \
+                --name frontend \
                 --network host \
                 --restart unless-stopped \
                 -p 3000:3000 \
