@@ -6,3 +6,8 @@ export interface IPageMetadata {
   take: number;
   itemsAmount: number;
 }
+
+export interface IPageParams {
+  page?: number;
+  take?: number;
+}

@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 
 import { IMovie } from '@/models/movies';
 import MovieCard from './MovieCard';
@@ -10,22 +10,23 @@ interface IMovieListProps {
 
 const MovieList = ({ movies }: IMovieListProps) => {
   return (
-    <Grid container spacing={3} sx={{ justifyContent: 'center', width: '100%' }}>
-      <Grid size={12}>
+    <Box sx={{ width: '100%' }}>
+      <Box sx={{ width: '100%', mb: '120px' }}>
         <Header />
+      </Box>
+      <Grid container spacing={3} sx={{ justifyContent: 'flex-start', width: '100%' }}>
+        {movies.map((movie) => (
+          <Grid key={movie.id} size={{ sm: 6, md: 4, lg: 3 }}>
+            <MovieCard
+              id={movie.id}
+              title={movie.title}
+              publishYear={movie.publishYear}
+              photoUrl={movie.photoUrl}
+            />
+          </Grid>
+        ))}
       </Grid>
-
-      {movies.map((movie) => (
-        <Grid key={movie.id} size={{ sm: 6, md: 4, lg: 3 }}>
-          <MovieCard
-            id={movie.id}
-            title={movie.title}
-            publishYear={movie.publishYear}
-            photoUrl={movie.photoUrl}
-          />
-        </Grid>
-      ))}
-    </Grid>
+    </Box>
   );
 };
 

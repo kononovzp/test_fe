@@ -14,7 +14,9 @@
     "myMovies": "My movies",
     "empty": "Your movie list is empty",
     "add": "Add a new movie",
-    "addSuccess": "Movie added successfully!"
+    "addSuccess": "Movie added successfully!",
+    "create": "Create a new movie",
+    "edit": "Edit"
   },
   "errors": {
     "requiredField": "Field is required",
@@ -32,7 +34,8 @@
     "fileSizeExceeds": "File size exceeds 5 MB",
     "invalidImageType": "File should be in png or jpeg type",
     "unknown": "Something went wrong",
-    "uploadFile": "Upload file before create movie!"
+    "uploadFile": "Upload file before create movie!",
+    "unauthorized": "Unauthorized"
   },
   "inputs": {
     "upload": "Drop file here",

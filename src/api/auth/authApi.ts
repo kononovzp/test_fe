@@ -1,18 +1,14 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi } from '@reduxjs/toolkit/query/react';
 
 import { loginSuccess, logout } from '@/store/slices/auth';
 import { IRegistrationBody } from '@/models/auth';
 
 import { API } from '../api.enum';
-import { prepareHeaders } from '../utils/prepareHeaders';
-import { SERVER_API } from '..';
+import { baseQueryWithReauth } from '../utils/responseHandler';
 
 export const authApi = createApi({
   reducerPath: 'authApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: SERVER_API,
-    prepareHeaders,
-  }),
+  baseQuery: baseQueryWithReauth,
   endpoints: (builder) => ({
     login: builder.mutation<
       { accessToken: string },

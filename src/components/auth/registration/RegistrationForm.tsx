@@ -5,8 +5,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { t } from 'i18next';
 
 import { RegistrationFields } from '@/constants/index';
-import { FormProvider, RHFOutlinedInput } from '@/components/hook-form';
-import { SVGIcon } from '@/components/svg-icon';
+import { FormProvider, RHFOutlinedInput } from '@/components/common/hook-form';
+import { SVGIcon } from '@/components/common/svg-icon';
 
 import { RegistrationSchema } from './registrationSchema';
 import Link from 'next/link';

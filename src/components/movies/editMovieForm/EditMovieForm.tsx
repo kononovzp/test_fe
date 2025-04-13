@@ -1,18 +1,18 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import { useRouter } from 'next/router';
-import { Box, Button, Grid, useTheme } from '@mui/material';
+import { Box, Button, Typography, useTheme } from '@mui/material';
 import { Resolver, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { t } from 'i18next';
+import { enqueueSnackbar } from 'notistack';
 
-import { FormProvider, RHFOutlinedInput } from '@/components/hook-form';
+import { FormProvider, RHFOutlinedInput } from '@/components/common/hook-form';
 import { IMovie } from '@/models/movies';
 import { EditMovieFields, MAX_AVATAR_SIZE } from '@/constants';
-import PhotoDropzone from '@/components/uploadDropzone/PhotoDropzone';
+import PhotoDropzone from '@/components/common/uploadDropzone/PhotoDropzone';
 import { PATH_MAIN } from '@/routes/paths';
+import { useCreateMovieMutation, useUpdateMovieMutation } from '@/api/movies/moviesApi';
 import { editMovieSchema } from './editMovieSchema';
-import { useCreateMovieMutation } from '@/api/movies/moviesApi';
-import { enqueueSnackbar } from 'notistack';
 
 export interface IEditMovieValues {
   [EditMovieFields.TITLE]: string;
@@ -33,6 +33,9 @@ const defaultValues: IEditMovieValues = {
 const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
   const router = useRouter();
   const { breakpoints, palette } = useTheme();
+  const { id } = router.query;
+
+  const isNewMovie = useMemo(() => id === 'new', [id]);
 
   const methods = useForm<IEditMovieValues>({
     resolver: yupResolver(editMovieSchema()) as Resolver<IEditMovieValues, unknown>,
@@ -49,32 +52,45 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
   } = methods;
 
   const [createMovie] = useCreateMovieMutation();
+  const [updateMovie] = useUpdateMovieMutation();
 
   const file = watch(EditMovieFields.PHOTO);
 
-  const onSubmit = async (data: IEditMovieValues) => {
-    const formData = new FormData();
+  const title = useMemo(() => (isNewMovie ? t('movies.create') : t('movies.edit')), [isNewMovie]);
 
-    formData.append('title', data[EditMovieFields.TITLE]);
-    formData.append('publishYear', data[EditMovieFields.PUBLISH_YEAR]);
+  const onSubmit = useCallback(
+    async (data: IEditMovieValues) => {
+      const formData = new FormData();
 
-    if (data[EditMovieFields.PHOTO]) {
-      formData.append('poster', data[EditMovieFields.PHOTO]);
-    }
-    await createMovie(formData)
-      .unwrap()
-      .then(() => {
-        enqueueSnackbar(t('movies.addSuccess'), {
-          variant: 'success',
+      formData.append('title', data[EditMovieFields.TITLE]);
+      formData.append('publishYear', data[EditMovieFields.PUBLISH_YEAR]);
+
+      if (data[EditMovieFields.PHOTO]) {
+        formData.append('poster', data[EditMovieFields.PHOTO]);
+      }
+
+      await (
+        isNewMovie ? createMovie(formData) : updateMovie({ movieId: id as string, body: formData })
+      )
+        .unwrap()
+        .then(() => {
+          enqueueSnackbar(t('movies.addSuccess'), {
+            variant: 'success',
+          });
+          router.push(PATH_MAIN.MOVIES);
         });
-      });
-  };
+    },
+    [id, isNewMovie, router, createMovie, updateMovie]
+  );
 
-  const onDrop = (acceptedFiles: File[]) => {
-    if (acceptedFiles.length) {
-      setValue(EditMovieFields.PHOTO, acceptedFiles[0]);
-    }
-  };
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      if (acceptedFiles.length) {
+        setValue(EditMovieFields.PHOTO, acceptedFiles[0]);
+      }
+    },
+    [setValue]
+  );
 
   const onCancel = useCallback(() => {
     router.push(PATH_MAIN.MOVIES);
@@ -100,74 +116,76 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
         },
       }}
     >
+      <Typography
+        variant="h2"
+        sx={{
+          mb: '120px',
+          [breakpoints.down('sm')]: {
+            textAlign: 'center',
+          },
+        }}
+      >
+        {title}
+      </Typography>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-        <Grid
-          container
-          spacing={1}
+        <Box
           sx={{
-            [breakpoints.down('sm')]: {
-              flexDirection: 'column-reverse',
-            },
+            display: 'flex',
+            flexDirection: { xs: 'column-reverse', sm: 'row' },
+            gap: 2,
+            width: '100%',
           }}
         >
-          <Grid size={{ sm: 12, md: 6 }}>
-            <Box width="100%">
-              <PhotoDropzone
-                onDrop={onDrop}
-                value={file || null}
-                maxFileSize={MAX_AVATAR_SIZE}
-                containerStyle={{
-                  height: '500px',
-                  maxHeight: '500px',
-                  [breakpoints.down('sm')]: {
-                    width: '100%',
-                    maxHeight: '372px',
-                  },
-                }}
-              />
-            </Box>
-          </Grid>
-
-          <Grid
-            size={{ sm: 12, md: 6 }}
+          <Box
             sx={{
+              width: { xs: '100%', sm: '475px' },
+              height: '500px',
+              maxHeight: '500px',
+              mb: '120px',
               [breakpoints.down('sm')]: {
-                justifyContent: 'center',
+                mb: 5,
               },
             }}
           >
-            <Box
-              width="100%"
-              maxWidth="380px"
-              sx={{
-                [breakpoints.down('sm')]: {
-                  maxWidth: '100%',
-                },
+            <PhotoDropzone
+              onDrop={onDrop}
+              value={file || null}
+              maxFileSize={MAX_AVATAR_SIZE}
+              containerStyle={{
+                height: '100%',
+                maxHeight: '100%',
               }}
-            >
-              <RHFOutlinedInput
-                name={EditMovieFields.TITLE}
-                type="text"
-                placeholder={t('inputs.title')}
-                fullWidth
-              />
-            </Box>
-            <Box
-              width="100%"
-              maxWidth="380px"
-              sx={{
-                [breakpoints.down('sm')]: {
-                  maxWidth: '100%',
-                },
-              }}
-            >
-              <RHFOutlinedInput
-                name={EditMovieFields.PUBLISH_YEAR}
-                type="text"
-                placeholder={t('inputs.year')}
-                fullWidth
-              />
-            </Box>
+              previewBorderRadius="0px"
+              previewWidth="100%"
+              previewObjectFit="contain"
+            />
+          </Box>
+
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 2,
+              width: '100%',
+              maxWidth: '380px',
+              [breakpoints.down('sm')]: {
+                maxWidth: '100%',
+              },
+            }}
+          >
+            <RHFOutlinedInput
+              name={EditMovieFields.TITLE}
+              type="text"
+              placeholder={t('inputs.title')}
+              fullWidth
+            />
+            <RHFOutlinedInput
+              name={EditMovieFields.PUBLISH_YEAR}
+              type="text"
+              placeholder={t('inputs.year')}
+              fullWidth
+            />
+
             <Box
               sx={{
                 display: 'flex',
@@ -195,8 +213,8 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
                 {t('common.submit')}
               </Button>
             </Box>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
         <Box
           sx={{
             display: 'flex',
@@ -217,7 +235,7 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
               border: `1px solid ${palette.common.white}`,
               minWidth: '50%',
               '&:hover': {
-                border: `1px solid transparent`,
+                border: `1px solid transparent !important`,
                 color: palette.common.white,
               },
             }}

@@ -2,7 +2,7 @@ import { Box, Button, Typography, useTheme } from '@mui/material';
 import { t } from 'i18next';
 import { useRouter } from 'next/router';
 
-import { SVGIcon } from '@/components/svg-icon';
+import { SVGIcon } from '@/components/common/svg-icon';
 import { useAppDispatch } from '@/store/hooks';
 import { logout } from '@/store/slices/auth';
 import { PATH_AUTH, PATH_MAIN } from '@/routes/paths';

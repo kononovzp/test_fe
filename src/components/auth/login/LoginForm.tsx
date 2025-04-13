@@ -6,9 +6,9 @@ import { t } from 'i18next';
 import Link from 'next/link';
 
 import { LoginFields } from '@/constants/index';
-import { FormProvider, RHFOutlinedInput } from '@/components/hook-form';
-import { SVGIcon } from '@/components/svg-icon';
-import RHFCheckBox from '@/components/hook-form/RHFCheckBox';
+import { FormProvider, RHFOutlinedInput } from '@/components/common/hook-form';
+import { SVGIcon } from '@/components/common/svg-icon';
+import RHFCheckBox from '@/components/common/hook-form/RHFCheckBox';
 import { PATH_AUTH } from '@/routes/paths';
 
 import { LoginSchema } from './loginSchema';

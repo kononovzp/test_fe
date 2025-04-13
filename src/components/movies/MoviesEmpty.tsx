@@ -19,9 +19,8 @@ const MoviesEmpty = () => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '100vh',
+        minHeight: '100vh',
         width: '100%',
-        px: '120px',
       }}
     >
       <Typography

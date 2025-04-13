@@ -1,3 +1,3 @@
-export * from './hook-form';
-export * from './inputs';
-export * from './svg-icon';
+export * from './common/hook-form';
+export * from './common/inputs';
+export * from './common/svg-icon';

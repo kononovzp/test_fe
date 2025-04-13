@@ -1,31 +1,14 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi } from '@reduxjs/toolkit/query/react';
+
+import { IGetMoviesRes, MovieResponse } from '@/models/movies';
+import { IPageParams } from '@/models';
 import { API } from '../api.enum';
-import { prepareHeaders } from '../utils/prepareHeaders';
-import { SERVER_API } from '..';
-import { IMovie } from '@/models/movies';
-
-export interface CreateMovieRequest {
-  title: string;
-  publishYear: string;
-}
-
-export interface MovieResponse {
-  id: string;
-  title: string;
-  publishYear: string;
-  posterUrl: string;
-}
-
-export interface IGetMoviesRes {
-  movies: IMovie[];
-}
+import { baseQueryWithReauth } from '../utils/responseHandler';
 
 export const moviesApi = createApi({
   reducerPath: 'moviesApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: SERVER_API,
-    prepareHeaders,
-  }),
+  baseQuery: baseQueryWithReauth,
+  tagTypes: ['movies'],
   endpoints: (builder) => ({
     createMovie: builder.mutation<MovieResponse, FormData>({
       query(body) {
@@ -35,17 +18,35 @@ export const moviesApi = createApi({
           body,
         };
       },
+      invalidatesTags: ['movies'],
     }),
 
-    getMovies: builder.query<IGetMoviesRes, void>({
-      query() {
+    getMovies: builder.query<IGetMoviesRes, IPageParams>({
+      query({ page = 1, take = 12 }) {
+        const params = new URLSearchParams({
+          page: page.toString(),
+          take: take.toString(),
+        });
+
         return {
-          url: API.MOVIES,
+          url: `${API.MOVIES}?${params.toString()}`,
           method: 'GET',
         };
       },
+      providesTags: ['movies'],
+    }),
+
+    updateMovie: builder.mutation<MovieResponse, { movieId: string; body: FormData }>({
+      query({ movieId, body }) {
+        return {
+          url: `${API.MOVIES}/${movieId}`,
+          method: 'PATCH',
+          body,
+        };
+      },
+      invalidatesTags: ['movies'],
     }),
   }),
 });
 
-export const { useCreateMovieMutation, useGetMoviesQuery } = moviesApi;
+export const { useCreateMovieMutation, useGetMoviesQuery, useUpdateMovieMutation } = moviesApi;

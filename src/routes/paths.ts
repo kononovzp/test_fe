@@ -15,5 +15,5 @@ export const PATH_MAIN = {
   ROOT: ROOT_MOVIES,
   MOVIES: path(ROOT_MOVIES, '/'),
   MOVIES_NEW: path(ROOT_MOVIES, '/new'),
-  MOVIES_EDIT: path(ROOT_MOVIES, '/edit'),
+  MOVIES_EDIT: path(ROOT_MOVIES, '/:id'),
 };

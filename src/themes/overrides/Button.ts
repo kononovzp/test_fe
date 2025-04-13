@@ -104,7 +104,6 @@ export default function Button(theme: Theme) {
             backgroundColor: theme.palette.primary.lighter,
             color: theme.palette.common.white,
             borderColor: theme.palette.primary.lighter,
-            border: 'none',
           },
           '&.Mui-disabled': {
             borderColor: theme.palette.primary.lighter,

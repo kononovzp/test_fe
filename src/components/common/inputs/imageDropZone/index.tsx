@@ -7,7 +7,7 @@ import { enqueueSnackbar } from 'notistack';
 import ReactCrop, { centerCrop, Crop } from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 
-import { SVGIcon } from '@/components/svg-icon';
+import { SVGIcon } from '@/components/common/svg-icon';
 
 interface IImageDropZoneProps {
   value: string | File | null;
@@ -261,7 +261,7 @@ const ImageDropZone = ({
               top: '50%',
               left: '50%',
               transform: 'translate(-50%, -50%)',
-              maxHeight: '90vh',
+              maxHeight: '100vh',
               maxWidth: '90vw',
             }}
           >

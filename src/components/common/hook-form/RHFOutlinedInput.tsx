@@ -1,7 +1,7 @@
 import { BoxProps, OutlinedInput, OutlinedInputProps, Stack } from '@mui/material';
 import { useFormContext, Controller } from 'react-hook-form';
 
-import { ErrorBox, Label } from '@/components/inputs';
+import { ErrorBox, Label } from '@/components/common/inputs';
 
 type Props = OutlinedInputProps & {
   name: string;

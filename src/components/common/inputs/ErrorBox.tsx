@@ -1,6 +1,6 @@
 import { Box, BoxProps, FormHelperText, Stack, useTheme } from '@mui/material';
 
-import { SVGIcon } from '@/components/svg-icon';
+import { SVGIcon } from '@/components/common/svg-icon';
 import { pxToRem } from '@/themes/typography';
 
 interface IErrorBoxProps extends BoxProps {

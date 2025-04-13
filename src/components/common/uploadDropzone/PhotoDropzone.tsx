@@ -4,7 +4,7 @@ import { Box, useTheme, Stack, CardMedia, SxProps, Typography } from '@mui/mater
 import { t } from 'i18next';
 import { enqueueSnackbar } from 'notistack';
 
-import { SVGIcon } from '@/components/svg-icon';
+import { SVGIcon } from '@/components/common/svg-icon';
 
 interface PhotoDropzoneProps {
   onDrop: DropzoneOptions['onDrop'];
@@ -129,7 +129,6 @@ const PhotoDropzone = ({
         {value && (
           <Stack
             sx={{
-              borderRadius: '50%',
               flexDirection: 'row',
               alignItems: 'center',
               justifyContent: 'flex-start',
@@ -138,7 +137,6 @@ const PhotoDropzone = ({
             <Box
               sx={{
                 width: previewWidth,
-                height: '260px',
                 borderRadius: previewBorderRadius,
                 overflow: 'hidden',
               }}
