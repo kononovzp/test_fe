@@ -44,7 +44,15 @@ const MovieCard = ({ id, title, publishYear, photoUrl }: IMovieCardProps) => {
       }}
     >
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-        <Box sx={{ width: '100%', height: '100%' }}>
+        <Box
+          sx={{
+            width: '100%',
+            height: '400px',
+            [breakpoints.down('sm')]: {
+              height: '246px',
+            },
+          }}
+        >
           <img
             src={photoUrl}
             alt={title}
