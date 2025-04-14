@@ -7,24 +7,28 @@ import { IRegistrationFormValues } from '@/components/auth/registration/Registra
 import { IRegistrationBody } from '@/models/auth';
 import { AuthGuard } from '@/auth';
 import { PATH_MAIN } from '@/routes/paths';
+import { useCallback } from 'react';
 
 export default function RegisterPage() {
   const { breakpoints } = useTheme();
   const [register, { isLoading: registerLoading }] = useRegisterMutation();
 
-  const handleSubmitRegistrationForm = async (data: IRegistrationFormValues) => {
-    const { email, firstName, lastName, password, remember } = data;
+  const handleSubmitRegistrationForm = useCallback(
+    async (data: IRegistrationFormValues) => {
+      const { email, firstName, lastName, password, remember } = data;
 
-    const registrationPayload: IRegistrationBody = {
-      email,
-      firstName,
-      lastName,
-      password,
-      remember,
-    };
+      const registrationPayload: IRegistrationBody = {
+        email,
+        firstName,
+        lastName,
+        password,
+        remember,
+      };
 
-    register(registrationPayload);
-  };
+      register(registrationPayload);
+    },
+    [register]
+  );
 
   return (
     <AuthGuard redirectUrlOnUnAuth={PATH_MAIN.MOVIES}>

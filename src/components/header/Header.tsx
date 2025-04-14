@@ -15,8 +15,8 @@ const Header = () => {
   const theme = useTheme();
 
   const handleLogout = useCallback(() => {
-    dispatch(logout());
     persistedStore.purge();
+    dispatch(logout());
 
     router.push(PATH_AUTH.LOGIN);
   }, [dispatch, router]);
