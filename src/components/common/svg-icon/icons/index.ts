@@ -23,7 +23,6 @@ import filter from './filter';
 import sortBy from './sortBy';
 import notifications from './notifications';
 import search from './search';
-import seller from './seller';
 import checkboxChecked from './checkboxChecked';
 import checkboxUnchecked from './checkboxUnchecked';
 import picture from './picture';
@@ -34,30 +33,19 @@ import lock from './lock';
 import download from './download';
 import open from './open';
 import expand from './expand';
-import underline from './underline';
 import header from './header';
 import paragraph from './paragraph';
 import dropdown from './dropdown';
 import checkboxes from './checkboxes';
-import singleChoice from './singleChoice';
 import mobileNumber from './mobileNumber';
 import image from './image';
 import date from './date';
-import websiteLink from './websiteLink';
-
-import rating from './rating';
-import signature from './signature';
-
 import email from './email';
 import gallery from './gallery';
 import check from './check';
 import dotsMenu from './dotsMenu';
 import pagebreak from './pagebreak';
-
-import underlineFont from './underlineFont';
-
 import sign from './sign';
-
 import closeBig from './closeBig';
 
 export const icons = {
@@ -86,7 +74,6 @@ export const icons = {
   sortBy,
   notifications,
   search,
-  seller,
   checkboxChecked,
   checkboxUnchecked,
   picture,
@@ -98,23 +85,17 @@ export const icons = {
   open,
   expand,
   image,
-  underline,
   header,
   paragraph,
   dropdown,
   checkboxes,
-  singleChoice,
   email,
   mobileNumber,
   date,
-  websiteLink,
-  rating,
-  signature,
   gallery,
   check,
   dotsMenu,
   pagebreak,
-  underlineFont,
   sign,
   closeBig,
 };
