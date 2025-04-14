@@ -65,14 +65,14 @@ const LoginForm = ({ isLoading, onSubmit }: ILoginFormProps) => {
               <InputAdornment position="end">
                 <Button
                   variant="outlined"
-                  sx={{ p: 0 }}
+                  sx={{ p: 0.5, minWidth: 0 }}
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   <SVGIcon
                     name={showPassword ? 'eyeClosed' : 'eye'}
                     width={24}
                     height={24}
-                    color={palette.common.black}
+                    color={palette.common.white}
                   />
                 </Button>
               </InputAdornment>

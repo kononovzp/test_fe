@@ -86,15 +86,15 @@ const RegistrationForm = ({ isLoading, onSubmit }: IRegistrationFormProps) => {
             endAdornment={
               <InputAdornment position="end">
                 <Button
-                  variant="light"
-                  sx={{ p: 0 }}
+                  variant="outlined"
+                  sx={{ p: 0.5, minWidth: 0 }}
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   <SVGIcon
                     name={showPassword ? 'eyeClosed' : 'eye'}
                     width={24}
                     height={24}
-                    color={palette.common.black}
+                    color={palette.common.white}
                   />
                 </Button>
               </InputAdornment>
@@ -107,15 +107,15 @@ const RegistrationForm = ({ isLoading, onSubmit }: IRegistrationFormProps) => {
             endAdornment={
               <InputAdornment position="end">
                 <Button
-                  variant="light"
-                  sx={{ p: 0 }}
+                  variant="outlined"
+                  sx={{ p: 0.5, minWidth: 0 }}
                   onClick={() => setShowRepeatPassword(!showRepeatPassword)}
                 >
                   <SVGIcon
                     name={showRepeatPassword ? 'eyeClosed' : 'eye'}
                     width={24}
                     height={24}
-                    color={palette.common.black}
+                    color={palette.common.white}
                   />
                 </Button>
               </InputAdornment>
