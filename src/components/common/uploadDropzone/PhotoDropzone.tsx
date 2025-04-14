@@ -116,6 +116,7 @@ const PhotoDropzone = ({
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
+          overflow: 'hidden',
         }}
       >
         {!value && (
@@ -132,6 +133,7 @@ const PhotoDropzone = ({
               flexDirection: 'row',
               alignItems: 'center',
               justifyContent: 'flex-start',
+              overflow: 'hidden',
             }}
           >
             <Box
@@ -145,7 +147,8 @@ const PhotoDropzone = ({
                 src={value instanceof File ? URL.createObjectURL(value) : value}
                 component="img"
                 sx={{
-                  height: '100%',
+                  maxWidth: '100%',
+                  maxHeight: '100%',
                   objectFit: previewObjectFit,
                 }}
               />

@@ -25,6 +25,7 @@ const Palette = (mode: ThemeMode) => {
         contrastText: COLORS.white,
         lighter: COLORS.primaryLighter,
         darker: COLORS.primaryDarker,
+        A100: isLight ? COLORS.white : COLORS.input,
       },
       error: {
         main: COLORS.error,

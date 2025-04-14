@@ -124,7 +124,18 @@ const RegistrationForm = ({ isLoading, onSubmit }: IRegistrationFormProps) => {
         </Stack>
         <Stack gap={2.5} mt={1.5}>
           <Divider />
-          <Button fullWidth disabled={isSubmitting || isLoading} type="submit" variant="contained">
+          <Button
+            fullWidth
+            disabled={isSubmitting || isLoading}
+            type="submit"
+            variant="contained"
+            sx={{
+              '&:hover': {
+                border: `1px solid transparent !important`,
+                color: palette.common.white,
+              },
+            }}
+          >
             {t('common.submit')}
           </Button>
         </Stack>
@@ -146,7 +157,7 @@ const RegistrationForm = ({ isLoading, onSubmit }: IRegistrationFormProps) => {
               variant="link"
             >
               <Typography variant="linkButtonS" sx={{ textTransform: 'none' }}>
-                {t('auth.noAccount')}
+                {t('auth.haveAccount')}
               </Typography>
             </Button>
           </Link>

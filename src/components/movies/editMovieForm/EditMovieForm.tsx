@@ -157,7 +157,7 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
               }}
               previewBorderRadius="0px"
               previewWidth="100%"
-              previewObjectFit="contain"
+              previewObjectFit="cover"
             />
           </Box>
 

@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { Box, Button, CardContent, Typography, useTheme } from '@mui/material';
+import { Box, Button, Typography, useTheme } from '@mui/material';
 import { useRouter } from 'next/router';
 
 import { PATH_MAIN } from '@/routes/paths';

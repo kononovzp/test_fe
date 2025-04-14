@@ -1,6 +1,7 @@
 import { Box, Button, Typography, useTheme } from '@mui/material';
 import { t } from 'i18next';
 import { useRouter } from 'next/router';
+import { useCallback } from 'react';
 
 import { SVGIcon } from '@/components/common/svg-icon';
 import { useAppDispatch } from '@/store/hooks';
@@ -13,16 +14,16 @@ const Header = () => {
   const router = useRouter();
   const theme = useTheme();
 
-  const handleLogout = () => {
+  const handleLogout = useCallback(() => {
     dispatch(logout());
     persistedStore.purge();
 
     router.push(PATH_AUTH.LOGIN);
-  };
+  }, [dispatch, router]);
 
-  const handleAdd = () => {
+  const handleAdd = useCallback(() => {
     router.push(PATH_MAIN.MOVIES_NEW);
-  };
+  }, [router]);
 
   return (
     <Box

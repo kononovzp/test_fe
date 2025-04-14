@@ -26,23 +26,6 @@ export default function MoviesPage() {
     setCurrentPage(page);
   }, []);
 
-  if (isLoading) {
-    return (
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          width: '100%',
-          minHeight: '60vh',
-        }}
-      >
-        <CircularLoader />
-      </Box>
-    );
-  }
-
   return (
     <AuthGuard>
       <Box
@@ -55,6 +38,20 @@ export default function MoviesPage() {
           p: '120px',
         }}
       >
+        {isLoading && (
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '100%',
+              minHeight: '60vh',
+            }}
+          >
+            <CircularLoader />
+          </Box>
+        )}
         {isSuccess && movies.length > 0 && (
           <Box
             sx={{
@@ -83,7 +80,7 @@ export default function MoviesPage() {
           </Box>
         )}
 
-        {(!isSuccess || !movies || !movies.length) && <MoviesEmpty />}
+        {!isLoading && (!movies || !movies.length) && <MoviesEmpty />}
       </Box>
     </AuthGuard>
   );

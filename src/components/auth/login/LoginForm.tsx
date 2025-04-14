@@ -99,6 +99,12 @@ const LoginForm = ({ isLoading, onSubmit }: ILoginFormProps) => {
             disabled={isSubmitting || !isValid || isLoading}
             type="submit"
             variant="contained"
+            sx={{
+              '&:hover': {
+                border: `1px solid transparent !important`,
+                color: palette.common.white,
+              },
+            }}
           >
             {t('auth.login')}
           </Button>

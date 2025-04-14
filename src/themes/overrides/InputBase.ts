@@ -1,5 +1,4 @@
 import { Theme } from '@mui/material/styles';
-
 import { pxToRem } from '@/themes/typography';
 
 export default function InputBase(theme: Theme) {
@@ -32,7 +31,7 @@ export default function InputBase(theme: Theme) {
         },
         root: {
           borderRadius: 8,
-          backgroundColor: theme.palette.common.white,
+          backgroundColor: theme.palette.primary.A100, // Set background color to primary.A100
           '& fieldset': {
             borderColor: theme.palette.grey[300],
           },
