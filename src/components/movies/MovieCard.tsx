@@ -18,7 +18,7 @@ const MovieCard = ({ id, title, publishYear, photoUrl }: IMovieCardProps) => {
 
   const handleClickEdit = useCallback(
     (id: string) => {
-      router.push(PATH_MAIN.MOVIES_EDIT.replace(':id', id));
+      router.push(`${PATH_MAIN.MOVIES}${id}`);
     },
     [router]
   );

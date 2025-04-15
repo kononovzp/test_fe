@@ -3,14 +3,14 @@ import { Box, Button, Divider, InputAdornment, Stack, Typography, useTheme } fro
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { t } from 'i18next';
+import Link from 'next/link';
 
 import { RegistrationFields } from '@/constants/index';
 import { FormProvider, RHFOutlinedInput } from '@/components/common/hook-form';
 import { SVGIcon } from '@/components/common/svg-icon';
+import { PATH_AUTH } from '@/routes/paths';
 
 import { RegistrationSchema } from './registrationSchema';
-import Link from 'next/link';
-import { PATH_AUTH } from '@/routes/paths';
 
 export interface IRegistrationFormValues {
   [RegistrationFields.EMAIL]: string;

@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import { Box, Stack, Typography, useTheme } from '@mui/material';
 import { t } from 'i18next';
 
@@ -7,7 +8,6 @@ import { IRegistrationFormValues } from '@/components/auth/registration/Registra
 import { IRegistrationBody } from '@/models/auth';
 import { AuthGuard } from '@/auth';
 import { PATH_MAIN } from '@/routes/paths';
-import { useCallback } from 'react';
 
 export default function RegisterPage() {
   const { breakpoints } = useTheme();

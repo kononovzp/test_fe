@@ -7,16 +7,17 @@ import { useGetMoviesQuery } from '@/api/movies/moviesApi';
 import { AuthGuard } from '@/auth';
 import { MOBILE_SCREEN } from '@/constants';
 import { CircularLoader } from '@/components/common';
+import { FIRST_PAGE, MOVIES_PAGE_SIZE } from '@/constants/movies';
 
 export default function MoviesPage() {
   const isSmallScreen = useMediaQuery(MOBILE_SCREEN);
   const { breakpoints } = useTheme();
 
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [currentPage, setCurrentPage] = useState<number>(FIRST_PAGE);
 
   const { data, isSuccess, isLoading } = useGetMoviesQuery({
     page: currentPage,
-    take: 12,
+    take: MOVIES_PAGE_SIZE,
   });
 
   const movies = useMemo(() => data?.movies || [], [data]);
