@@ -8,12 +8,17 @@ const Icon: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
     xmlns="http://www.w3.org/2000/svg"
     {...props}
   >
-    <path
-      d="M9.80769 4.875H7.06731C5.85653 4.875 4.875 5.85653 4.875 7.06731V16.9327C4.875 18.1435 5.85653 19.125 7.06731 19.125H9.80769M8.625 12L19.5865 12M19.5865 12L16.2981 15.2885M19.5865 12L16.2981 8.71154"
-      stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
+    <g clip-path="url(#clip0_1_270)">
+      <path
+        d="M17 8L15.59 9.41L17.17 11H9V13H17.17L15.59 14.58L17 16L21 12L17 8ZM5 5H12V3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H12V19H5V5Z"
+        fill="white"
+      />
+    </g>
+    <defs>
+      <clipPath id="clip0_1_270">
+        <rect width="24" height="24" fill="white" />
+      </clipPath>
+    </defs>
   </svg>
 );
 export default Icon;
