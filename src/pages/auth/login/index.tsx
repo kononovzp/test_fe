@@ -1,5 +1,4 @@
 import { t } from 'i18next';
-import { enqueueSnackbar } from 'notistack';
 import { Box, Stack, Typography, useTheme } from '@mui/material';
 
 import { useAppDispatch } from '@/store/hooks';
@@ -19,17 +18,11 @@ export default function LoginPage() {
   const handleLogin = async ({ email, password, remember }: ILoginFormValues) => {
     dispatch(userApi.util.invalidateTags(['user']));
 
-    try {
-      await login({
-        email: email.toLowerCase(),
-        password,
-        remember,
-      }).unwrap();
-    } catch {
-      enqueueSnackbar(t('errors.unknown'), {
-        variant: 'error',
-      });
-    }
+    await login({
+      email: email.toLowerCase(),
+      password,
+      remember,
+    }).unwrap();
   };
 
   return (

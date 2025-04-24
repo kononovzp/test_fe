@@ -34,9 +34,17 @@
     "passwordsDontMatch": "Passwords don't match",
     "fileSizeExceeds": "File size exceeds 5 MB",
     "invalidImageType": "File should be in png or jpeg type",
+    "imageTooSmall": "Please upload an image with at least {{width}}x{{height}} pixels in size.",
     "unknown": "Something went wrong",
     "uploadFile": "Upload file before create movie!",
     "unauthorized": "Unauthorized"
+  },
+  "errorMessages": {
+    "emailAlreadyExist": "Account with this email address has already been created.",
+    "emailOrPasswordIncorrect": "Email or password is incorrect",
+    "somethingWentWrong": "Something went wrong",
+    "oldPasswordInvalid": "The current password is incorrect",
+    "userNotFoundByEmail": "User with this email doesn't exist"
   },
   "inputs": {
     "upload": "Drop file here",

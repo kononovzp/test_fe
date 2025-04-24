@@ -25,7 +25,7 @@ export default function RegisterPage() {
         remember,
       };
 
-      register(registrationPayload);
+      await register(registrationPayload).unwrap();
     },
     [register]
   );

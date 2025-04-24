@@ -12,9 +12,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
   useEffect(() => {
-    if (token) {
-      setIsAuthenticated(Boolean(token));
-    }
+    setIsAuthenticated(Boolean(token));
   }, [token]);
 
   const memoizedValue = useMemo(

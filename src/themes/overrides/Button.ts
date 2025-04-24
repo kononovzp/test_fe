@@ -15,7 +15,6 @@ export default function Button(theme: Theme) {
           fontSize: pxToRem(16),
           fontWeight: 700,
           lineHeight: pxToRem(24),
-          border: '2px solid transparent',
           transition: 'all 0.3s ease-in-out',
           '&:focus': {
             outline: 'none !important',
@@ -87,6 +86,7 @@ export default function Button(theme: Theme) {
         contained: {
           backgroundColor: theme.palette.primary.main,
           color: theme.palette.common.white,
+          border: 'none',
           '&:hover': {
             backgroundColor: theme.palette.primary.darker,
             color: theme.palette.common.white,

@@ -16,6 +16,7 @@ export const AuthGuard: FC<AuthGuardProps> = ({
   const router = useRouter();
 
   const { isAuthenticated } = useAuthContext();
+  console.log('isAuthenticated: ', isAuthenticated);
 
   useEffect(() => {
     if (router.pathname.includes(PATH_AUTH.ROOT) && !redirectUrlOnUnAuth) {

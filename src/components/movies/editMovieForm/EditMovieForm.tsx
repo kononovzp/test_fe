@@ -138,7 +138,9 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
         >
           <Box
             sx={{
-              width: { xs: '100%', sm: '475px' },
+              width: '100%',
+              minWidth: { xs: '0', sm: '400px' },
+              maxWidth: { xs: '100%', sm: '475px' },
               height: '500px',
               maxHeight: '500px',
               mb: '120px',
@@ -169,6 +171,7 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
               width: '100%',
               maxWidth: '380px',
               [breakpoints.down('sm')]: {
+                width: '100%',
                 maxWidth: '100%',
               },
             }}
