@@ -5,6 +5,7 @@ import { t } from 'i18next';
 import { enqueueSnackbar } from 'notistack';
 
 import { SVGIcon } from '@/components/common/svg-icon';
+import { ErrorBox } from '../inputs';
 
 interface PhotoDropzoneProps {
   onDrop: DropzoneOptions['onDrop'];
@@ -84,77 +85,83 @@ const PhotoDropzone = ({
   });
 
   return (
-    <Box
-      {...getRootProps()}
-      sx={{
-        height: '100%',
-        width: '100%',
-        borderRadius: '8px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        maxHeight: '266px',
-        border: `2px dashed ${palette.common.white}`,
-        p: '40px 20px',
-        cursor: 'pointer',
-        [breakpoints.down('sm')]: {
-          width: '100%',
-          p: '0',
-        },
-        ...containerStyle,
-      }}
-      onClick={() => inputRef?.current?.click()}
-      onTouchEnd={() => inputRef?.current?.click()}
-    >
-      <input {...getInputProps()} onBlur={onBlur} ref={inputRef} style={{ display: 'none' }} />
+    <>
       <Box
+        {...getRootProps()}
         sx={{
-          width: '100%',
           height: '100%',
+          width: '100%',
+          borderRadius: '8px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          overflow: 'hidden',
+          maxHeight: '266px',
+          p: '40px 20px',
+          cursor: 'pointer',
+          border: `2px dashed ${palette.common.white}`,
+          ...(error && {
+            border: `2px dashed ${palette.error.main}`,
+          }),
+          [breakpoints.down('sm')]: {
+            width: '100%',
+            p: '0',
+          },
+          ...containerStyle,
         }}
+        onClick={() => inputRef?.current?.click()}
+        onTouchEnd={() => inputRef?.current?.click()}
       >
-        {!value && (
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, alignItems: 'center' }}>
-            <SVGIcon name="upload" fill={palette.primary[100]} width={24} height={24} />
-            <Typography variant="bodySmall" color={palette.common.white}>
-              {t('common.dropFile')}
-            </Typography>
-          </Box>
-        )}
-        {value && (
-          <Stack
-            sx={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'flex-start',
-              overflow: 'hidden',
-            }}
-          >
-            <Box
+        <input {...getInputProps()} onBlur={onBlur} ref={inputRef} style={{ display: 'none' }} />
+        <Box
+          sx={{
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            overflow: 'hidden',
+          }}
+        >
+          {!value && (
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, alignItems: 'center' }}>
+              <SVGIcon name="upload" fill={palette.primary[100]} width={24} height={24} />
+              <Typography variant="bodySmall" color={palette.common.white}>
+                {t('common.dropFile')}
+              </Typography>
+            </Box>
+          )}
+          {value && (
+            <Stack
               sx={{
-                width: previewWidth,
-                borderRadius: previewBorderRadius,
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'flex-start',
                 overflow: 'hidden',
               }}
             >
-              <CardMedia
-                src={value instanceof File ? URL.createObjectURL(value) : value}
-                component="img"
+              <Box
                 sx={{
-                  maxWidth: '100%',
-                  maxHeight: '100%',
-                  objectFit: previewObjectFit,
+                  width: previewWidth,
+                  borderRadius: previewBorderRadius,
+                  overflow: 'hidden',
                 }}
-              />
-            </Box>
-          </Stack>
-        )}
+              >
+                <CardMedia
+                  src={value instanceof File ? URL.createObjectURL(value) : value}
+                  component="img"
+                  sx={{
+                    maxWidth: '100%',
+                    maxHeight: '100%',
+                    objectFit: previewObjectFit,
+                  }}
+                />
+              </Box>
+            </Stack>
+          )}
+        </Box>
       </Box>
-    </Box>
+      <ErrorBox error={error?.message} />
+    </>
   );
 };
 

@@ -14,5 +14,13 @@ export const editMovieSchema = () =>
         return !value || (value && AVATAR_SUPPORTED_FORMATS.includes(value.type));
       }),
     [EditMovieFields.TITLE]: Yup.string().required(t('errors.requiredField')),
-    [EditMovieFields.PUBLISH_YEAR]: Yup.string().required(t('errors.requiredField')),
+    [EditMovieFields.PUBLISH_YEAR]: Yup.string()
+      .matches(/^\d{4}$/, t('errors.invalidYear'))
+      .required(t('errors.requiredField'))
+      .test('validYear', t('errors.invalidYear'), (value) => {
+        const year = parseInt(value ?? '0', 10);
+        const currentYear = new Date().getFullYear();
+
+        return year >= 1900 && year <= currentYear + 10;
+      }),
   });

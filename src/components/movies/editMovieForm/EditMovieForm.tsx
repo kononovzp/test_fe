@@ -40,7 +40,7 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
   const methods = useForm<IEditMovieValues>({
     resolver: yupResolver(editMovieSchema()) as Resolver<IEditMovieValues, unknown>,
     defaultValues,
-    mode: 'onTouched',
+    mode: 'onChange',
   });
 
   const {
@@ -48,7 +48,9 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
     reset,
     setValue,
     watch,
-    formState: { isSubmitting, isValid, isDirty },
+    clearErrors,
+    setError,
+    formState: { isSubmitting, isDirty, errors },
   } = methods;
 
   const [createMovie] = useCreateMovieMutation();
@@ -60,6 +62,11 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
 
   const onSubmit = useCallback(
     async (data: IEditMovieValues) => {
+      if (!data[EditMovieFields.PHOTO]) {
+        setError(EditMovieFields.PHOTO, { message: t('errors.requiredField') });
+        return;
+      }
+
       const formData = new FormData();
 
       formData.append('title', data[EditMovieFields.TITLE]);
@@ -80,7 +87,7 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
           router.push(PATH_MAIN.MOVIES);
         });
     },
-    [id, isNewMovie, router, createMovie, updateMovie]
+    [isNewMovie, createMovie, updateMovie, id, setError, router]
   );
 
   const onDrop = useCallback(
@@ -95,6 +102,12 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
   const onCancel = useCallback(() => {
     router.push(PATH_MAIN.MOVIES);
   }, [router]);
+
+  useEffect(() => {
+    if (file) {
+      clearErrors(EditMovieFields.PHOTO);
+    }
+  }, [file, clearErrors]);
 
   useEffect(() => {
     if (movie) {
@@ -122,6 +135,7 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
           mb: '120px',
           [breakpoints.down('sm')]: {
             textAlign: 'center',
+            mb: '80px',
           },
         }}
       >
@@ -134,6 +148,9 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
             flexDirection: { xs: 'column-reverse', sm: 'row' },
             gap: 2,
             width: '100%',
+            [breakpoints.down('sm')]: {
+              gap: 0,
+            },
           }}
         >
           <Box
@@ -160,6 +177,7 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
               previewBorderRadius="0px"
               previewWidth="100%"
               previewObjectFit="cover"
+              error={errors[EditMovieFields.PHOTO]}
             />
           </Box>
 
@@ -167,7 +185,6 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
             sx={{
               display: 'flex',
               flexDirection: 'column',
-              gap: 2,
               width: '100%',
               maxWidth: '362px',
               [breakpoints.down('sm')]: {
@@ -181,12 +198,15 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
               type="text"
               placeholder={t('inputs.title')}
               fullWidth
+              errorBoxProps={{ sx: { height: '24px' } }}
             />
             <RHFOutlinedInput
               name={EditMovieFields.PUBLISH_YEAR}
-              type="text"
+              type="number"
               placeholder={t('inputs.year')}
               sx={{ width: { xs: '100%', sm: '216px' } }}
+              errorBoxProps={{ sx: { height: '24px' } }}
+              isYearInput
             />
 
             <Box
@@ -194,6 +214,7 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
                 display: 'flex',
                 justifyContent: 'flex-start',
                 gap: 2,
+                mt: '40px',
                 [breakpoints.down('sm')]: {
                   display: 'none',
                 },
@@ -212,7 +233,7 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
                 className="no-text-transform"
                 variant="contained"
                 type="submit"
-                disabled={isSubmitting || !isValid || !isDirty}
+                disabled={isSubmitting || !isDirty}
                 sx={{ padding: '16px 59px' }}
               >
                 {isNewMovie ? t('common.submit') : t('common.update')}
@@ -226,7 +247,7 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
             justifyContent: 'space-between',
             gap: 2,
             width: '100%',
-            mt: 5,
+            mt: 0,
             [breakpoints.up('sm')]: {
               display: 'none',
             },
@@ -239,7 +260,7 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
             disabled={isSubmitting}
             sx={{
               border: `1px solid ${palette.common.white}`,
-              minWidth: '50%',
+              width: '50%',
               '&:hover': {
                 border: `1px solid transparent !important`,
                 color: palette.common.white,
@@ -252,8 +273,8 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
             className="no-text-transform"
             variant="contained"
             type="submit"
-            disabled={isSubmitting || !isValid || !isDirty}
-            sx={{ minWidth: '50%' }}
+            disabled={isSubmitting || !isDirty}
+            sx={{ width: '50%' }}
           >
             {isNewMovie ? t('common.submit') : t('common.update')}
           </Button>

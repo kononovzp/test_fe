@@ -9,6 +9,7 @@ type Props = OutlinedInputProps & {
   onChangeInput?: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
   showZeroValue?: boolean;
   hideNegativeNumbers?: boolean;
+  isYearInput?: boolean;
 };
 
 export default function RHFOutlinedInput({
@@ -18,6 +19,7 @@ export default function RHFOutlinedInput({
   onChangeInput,
   showZeroValue = false,
   hideNegativeNumbers = false,
+  isYearInput = false,
   ...rest
 }: Props) {
   const { control } = useFormContext();
@@ -54,6 +56,13 @@ export default function RHFOutlinedInput({
               value={displayValue}
               onChange={(event) => {
                 let newValue = event.target.value;
+                if (isYearInput) {
+                  newValue = newValue.replace(/[^0-9]/g, '');
+                  if (newValue.length > 4) {
+                    newValue = newValue.slice(0, 4);
+                  }
+                }
+
                 if (inputProps?.type === 'phone') {
                   newValue = newValue.replace(/[^0-9]/g, '');
                   if (newValue.split('.').length > 2) {

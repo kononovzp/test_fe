@@ -38,7 +38,8 @@
     "imageTooSmall": "Please upload an image with at least {{width}}x{{height}} pixels in size.",
     "unknown": "Something went wrong",
     "uploadFile": "Upload file before create movie!",
-    "unauthorized": "Unauthorized"
+    "unauthorized": "Unauthorized",
+    "invalidYear": "Please enter a valid year"
   },
   "errorMessages": {
     "emailAlreadyExist": "Account with this email address has already been created.",
