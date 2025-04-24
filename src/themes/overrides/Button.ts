@@ -15,6 +15,7 @@ export default function Button(theme: Theme) {
           fontSize: pxToRem(16),
           fontWeight: 700,
           lineHeight: pxToRem(24),
+          textTransform: 'none',
           transition: 'all 0.3s ease-in-out',
           '&:focus': {
             outline: 'none !important',
