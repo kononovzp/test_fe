@@ -124,7 +124,13 @@ const RegistrationForm = ({ isLoading, onSubmit }: IRegistrationFormProps) => {
         </Stack>
         <Stack gap={2.5} mt={1.5}>
           <Divider />
-          <Button fullWidth disabled={isSubmitting || isLoading} type="submit" variant="contained">
+          <Button
+            fullWidth
+            disabled={isSubmitting || isLoading}
+            type="submit"
+            variant="contained"
+            className="no-text-transform"
+          >
             {t('common.submit')}
           </Button>
         </Stack>

@@ -200,6 +200,7 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
               }}
             >
               <Button
+                className="no-text-transform"
                 variant="outlined"
                 onClick={onCancel}
                 sx={{ border: `1px solid ${palette.common.white}`, padding: '16px 55px' }}
@@ -208,6 +209,7 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
                 {t('common.cancel')}
               </Button>
               <Button
+                className="no-text-transform"
                 variant="contained"
                 type="submit"
                 disabled={isSubmitting || !isValid || !isDirty}
@@ -231,6 +233,7 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
           }}
         >
           <Button
+            className="no-text-transform"
             variant="outlined"
             onClick={onCancel}
             disabled={isSubmitting}
@@ -246,6 +249,7 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
             {t('common.cancel')}
           </Button>
           <Button
+            className="no-text-transform"
             variant="contained"
             type="submit"
             disabled={isSubmitting || !isValid || !isDirty}

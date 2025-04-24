@@ -94,6 +94,7 @@ const LoginForm = ({ isLoading, onSubmit }: ILoginFormProps) => {
             disabled={isSubmitting || !isValid || isLoading}
             type="submit"
             variant="contained"
+            className="no-text-transform"
           >
             {t('auth.login')}
           </Button>
