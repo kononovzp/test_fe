@@ -19,7 +19,6 @@ const MoviesEmpty = () => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        minHeight: '100vh',
         width: '100%',
       }}
     >
