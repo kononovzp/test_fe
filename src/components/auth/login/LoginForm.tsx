@@ -79,12 +79,7 @@ const LoginForm = ({ isLoading, onSubmit }: ILoginFormProps) => {
             }
           />
         </Stack>
-        <Stack
-          direction={'row'}
-          display={'flex'}
-          justifyContent={'space-between'}
-          alignItems={'center'}
-        >
+        <Stack direction={'row'} display={'flex'} justifyContent={'center'} alignItems={'center'}>
           <RHFCheckBox
             name={LoginFields.REMEMBER}
             label={t('inputs.remember')}

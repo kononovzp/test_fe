@@ -169,7 +169,7 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
               flexDirection: 'column',
               gap: 2,
               width: '100%',
-              maxWidth: '380px',
+              maxWidth: '362px',
               [breakpoints.down('sm')]: {
                 width: '100%',
                 maxWidth: '100%',
@@ -186,7 +186,7 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
               name={EditMovieFields.PUBLISH_YEAR}
               type="text"
               placeholder={t('inputs.year')}
-              fullWidth
+              sx={{ width: { xs: '100%', sm: '216px' } }}
             />
 
             <Box
@@ -213,7 +213,7 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
                 disabled={isSubmitting || !isValid || !isDirty}
                 sx={{ padding: '16px 59px' }}
               >
-                {t('common.submit')}
+                {isNewMovie ? t('common.submit') : t('common.update')}
               </Button>
             </Box>
           </Box>
@@ -251,7 +251,7 @@ const EditMovieForm = ({ movie }: IEditMovieFormProps) => {
             disabled={isSubmitting || !isValid || !isDirty}
             sx={{ minWidth: '50%' }}
           >
-            {t('common.submit')}
+            {isNewMovie ? t('common.submit') : t('common.update')}
           </Button>
         </Box>
       </FormProvider>

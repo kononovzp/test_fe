@@ -48,5 +48,6 @@ declare module '@mui/material/Typography' {
     linkButtonSUnderlining: true;
     linkButtonS: true;
     microcopyLight: true;
+    bodySmall: true;
   }
 }

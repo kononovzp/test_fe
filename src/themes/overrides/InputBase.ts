@@ -31,9 +31,9 @@ export default function InputBase(theme: Theme) {
         },
         root: {
           borderRadius: 8,
-          backgroundColor: theme.palette.primary.A100, // Set background color to primary.A100
+          backgroundColor: theme.palette.primary.A100,
           '& fieldset': {
-            borderColor: theme.palette.grey[300],
+            borderColor: theme.palette.primary.A100,
           },
           '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
             borderColor: theme.palette.primary.main,

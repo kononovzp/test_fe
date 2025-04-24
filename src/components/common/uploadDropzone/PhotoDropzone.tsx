@@ -94,9 +94,7 @@ const PhotoDropzone = ({
         alignItems: 'center',
         justifyContent: 'center',
         maxHeight: '266px',
-        backgroundImage: `url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='8' ry='8' stroke='%23D9D9D9FF' stroke-width='5' stroke-dasharray='14%2c 23' stroke-dashoffset='25' stroke-linecap='square'/%3e%3c/svg%3e")`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        border: `2px dashed ${palette.common.white}`,
         p: '40px 20px',
         cursor: 'pointer',
         [breakpoints.down('sm')]: {
@@ -121,8 +119,8 @@ const PhotoDropzone = ({
       >
         {!value && (
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, alignItems: 'center' }}>
-            <SVGIcon name="picture" fill={palette.primary[100]} width={40} height={40} />
-            <Typography variant="body2Medium" color={palette.primary.main}>
+            <SVGIcon name="upload" fill={palette.primary[100]} width={24} height={24} />
+            <Typography variant="bodySmall" color={palette.common.white}>
               {t('common.dropFile')}
             </Typography>
           </Box>

@@ -3,6 +3,7 @@
     "loading": "Loading...",
     "submit": "Submit",
     "cancel": "Cancel",
+    "update": "Update",
     "dropFile": "Drop an image here"
   },
   "auth": {

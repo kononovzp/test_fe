@@ -24,7 +24,7 @@ export default function FormControlLabel(theme: Theme) {
             '& .MuiFormControlLabel-label': {
               fontSize: pxToRem(14),
               opacity: 1,
-              color: theme.palette.primary.main,
+              color: theme.palette.common.white,
             },
           },
           '&.custom-form-control-label-2': {
