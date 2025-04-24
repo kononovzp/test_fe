@@ -59,7 +59,7 @@ const Header = () => {
           type="button"
           sx={{ border: 'none', p: 1.5, minWidth: 0 }}
         >
-          <SVGIcon name="add" height={24} width={24} />
+          <SVGIcon name="addCircle" height={32} width={32} />
         </Button>
       </Box>
 

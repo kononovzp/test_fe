@@ -47,6 +47,7 @@ import dotsMenu from './dotsMenu';
 import pagebreak from './pagebreak';
 import sign from './sign';
 import closeBig from './closeBig';
+import addCircle from './addCircle';
 
 export const icons = {
   eye,
@@ -98,6 +99,7 @@ export const icons = {
   pagebreak,
   sign,
   closeBig,
+  addCircle,
 };
 
 export type IconTypes = keyof typeof icons;
