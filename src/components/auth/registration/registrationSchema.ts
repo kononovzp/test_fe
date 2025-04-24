@@ -23,7 +23,7 @@ export const RegistrationSchema = () =>
     [RegistrationFields.PASSWORD]: Yup.string()
       .required(t('errors.requiredPass'))
       .min(MIN_PASSWORD_LENGHT, t('errors.minLengthPass', { value: MIN_PASSWORD_LENGHT }))
-      .matches(PASSWORD_REG_EXP, t('errors.invalidPassword')),
+      .matches(PASSWORD_REG_EXP, t('errors.invalidPass')),
     [RegistrationFields.REPEAT_PASSWORD]: Yup.string()
       .required(t('errors.requiredPassRepeat'))
       .oneOf([Yup.ref(RegistrationFields.PASSWORD)], t('errors.passwordsDontMatch')),
